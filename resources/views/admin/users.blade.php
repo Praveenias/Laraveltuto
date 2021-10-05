@@ -25,7 +25,11 @@
                     <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        @if($user->usertype == "0")
                         <td><a href="#">Delete</a></td>
+                        @else
+                        <td>ADMIN</td>
+                        @endif
                     </tr>
                     @endforeach
                     
