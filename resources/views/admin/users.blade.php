@@ -1,0 +1,47 @@
+
+<x-app-layout>
+    
+    </x-app-layout>
+    
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        @include("admin.admincss")
+      </head>
+      <body>
+      <div class="container-scroller">
+            @include("admin.navbar")
+            <div class="container pt-6">
+                <table class="table table-sucess table-striped">             
+                <thead>
+                    <tr>                  
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($data as $user)
+                    <tr>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        @if($user->usertype == "0")
+                        <td><a href="{{ url('/deleteuser',$user->id)}}">Delete</a></td>
+                        @else
+                        <td>ADMIN</td>
+                        @endif
+                    </tr>
+                    @endforeach
+                    
+                </tbody>        
+                </table>
+            </div>
+            
+
+      </div>
+        
+        
+        @include("admin.adminscript")
+        
+      </body>
+    </html>
