@@ -7,15 +7,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Food;
+use App\Models\Foodchef;
 
 class HomeController extends Controller
 {
     //
     public function index(){
         $data = Food::all();
-        return view('home',compact("data"));
+        $datachef = Foodchef::all();
+        return view('home',compact("data","datachef"));
     }
     public function redirects(){
+        $datachef = Foodchef::all();
         $usertype = Auth::user()->usertype;
         $data = Food::all();
 
@@ -24,7 +27,7 @@ class HomeController extends Controller
         }
 
         else{
-            return view('home',compact("data"));
+            return view('home',compact("data","datachef"));
         }
     }
 
