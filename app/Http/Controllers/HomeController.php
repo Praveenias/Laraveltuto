@@ -54,4 +54,20 @@ class HomeController extends Controller
         }
     }
 
+    public function showcard($id){
+        $cardcount = Card::where('user_id',$id)->count();
+
+        $data = Card::where('user_id',$id)->join('Food','Cards.food_id',"=",'Food.id')->get();
+        $data2 = Card::select('*')->where('user_id','=',$id)->get();
+
+        return view('showcard',compact('cardcount','data','data2'));
+    }
+
+    public function removeincard($id){
+        $data = Card::find($id);
+        $data->delete();
+
+        return redirect()->back();
+    }
+
 }

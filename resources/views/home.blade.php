@@ -84,7 +84,7 @@ https://templatemo.com/tm-558-klassy-cafe
                             <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
                             <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li> 
                             @auth
-                            <li class="scroll-to-section"><a href="#reservation">Card[{{$cardcount}}] </a></li> 
+                            <li class="scroll-to-section"><a href="{{ url('/showcard',Auth::user()->id) }}">Card[{{$cardcount}}] </a></li> 
                             @endauth
                             <li>
                                 
@@ -107,9 +107,7 @@ https://templatemo.com/tm-558-klassy-cafe
                             @endif
                             </li>
                         </ul>   
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
+                        
                         <!-- ***** Menu End ***** -->
                     </nav>
                 </div>

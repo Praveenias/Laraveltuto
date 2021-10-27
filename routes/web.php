@@ -51,6 +51,10 @@ Route::get("/deletefoodchef/{id}",[AdminController::class,"deletefoodchef"]);
 
 Route::post("/addcard/{id}",[HomeController::class,"addcard"]);
 
+Route::get("/showcard/{id}",[HomeController::class,"showcard"]);
+
+Route::get("/removecarddata/{id}",[HomeController::class,"removeincard"]);
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
