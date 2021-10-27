@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Food;
 use App\Models\Foodchef;
+use App\Models\Card;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,29 @@ class HomeController extends Controller
         }
 
         else{
-            return view('home',compact("data","datachef"));
+            $user_id = Auth::id();
+            $cardcount = Card::where('user_id',$user_id)->count();
+            return view('home',compact("data","datachef","cardcount"));
+        }
+    }
+
+    public function addcard(Request $req,$id){
+        if(Auth::id()){
+            $user_id = Auth::id();
+            $food_id = $id;
+            $quantity = $req->quantity;
+
+            $card = new Card();
+            $card->user_id = $user_id;
+            $card->food_id = $food_id ;
+            $card->qty_id = $quantity;
+            $card->save();
+
+
+            return redirect()->back();
+        }
+        else{
+            return redirect('/login');
         }
     }
 
