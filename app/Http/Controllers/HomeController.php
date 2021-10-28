@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Food;
 use App\Models\Foodchef;
 use App\Models\Card;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -67,6 +68,20 @@ class HomeController extends Controller
         $data = Card::find($id);
         $data->delete();
 
+        return redirect()->back();
+    }
+
+    public function orderconfirm(Request $req){
+        foreach($req->foodname as $key => $foodname){
+            $data = new Order;
+            $data->foodname = $foodname;
+            $data->price = $req->price[$key];
+            $data->quantity = $req->quantity[$key];
+            $data->name = $req->name;
+            $data->phonenumber = $req->phonenumber;
+            $data->address = $req->address;
+            $data->save();
+        }
         return redirect()->back();
     }
 

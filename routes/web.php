@@ -55,6 +55,8 @@ Route::get("/showcard/{id}",[HomeController::class,"showcard"]);
 
 Route::get("/removecarddata/{id}",[HomeController::class,"removeincard"]);
 
+Route::post("/orderconfirm",[HomeController::class,"orderconfirm"]);
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

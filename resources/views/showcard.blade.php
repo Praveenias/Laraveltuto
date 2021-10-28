@@ -117,32 +117,60 @@ https://templatemo.com/tm-558-klassy-cafe
     </header>
     <div id="top">
         <div class="container pr-8">
-            
-            <table class="table table-striped">
-                <tr>
-                    <th>Food Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                   
-                </tr>
-                @foreach($data as $datau)
-                <tr>
-                    <td>{{ $datau->title }}</td>
-                    <td>{{ $datau->price }}</td>
-                    <td>{{ $datau->qty_id }}</td>
+            <form class="row gx-3 gy-2 align-items-center" action="{{ url('orderconfirm') }}" method="post">
+                @csrf
+                <table class="table table-striped">
                     
-                </tr>
-                @endforeach
-                @foreach($data2 as $datau)
-                <tr style="position: relative">
-                    <td><a href="{{ url("removecarddata",$datau->id) }}">Remove</a></td>
-                </tr>
-                @endforeach
-            </table>
+                    <tr>
+                        <th>Food Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    
+                    </tr>
+                    @foreach($data as $datau)
+                    <tr>
+                        <td><input name="foodname[]" value="{{ $datau->title }}"></td>
+                        <td><input name="price[]" value="{{ $datau->price }}"></td>
+                        <td><input name="quantity[]" value="{{ $datau->qty_id }}"></td>
+                        
+                    </tr>
+                    @endforeach
+                    @foreach($data2 as $datau)
+                    <tr style="position: relative">
+                        <td><a href="{{ url("removecarddata",$datau->id) }}">Remove</a></td>
+                    </tr>
+                    @endforeach
+                    
+                </table>
+            
+            
+                <div class="col-sm-3">
+                    <label class="visually-hidden" for="specificSizeInputName" >Name</label>
+                    <input type="text" class="form-control" id="specificSizeInputName" name="name">
+                </div>
+                <div class="col-sm-3">
+                    <label class="visually-hidden" for="specificSizeInputName">phone number</label>
+                    <input type="text" class="form-control" id="specificSizeInputName" name="phonenumber">
+                </div>
+                <div class="col-sm-3">
+                    <label class="visually-hidden" for="specificSizeInputName">Address</label>
+                    <input type="text" class="form-control" id="specificSizeInputName" name="address">
+                </div>
+                
+                
+                
+                <div class="col-sm-5 pt-4">
+                    <button type="submit" class="btn btn-primary">Confirm Order</button>
+                </div>
+            </form>
+           
             
             
         </div>
     </div>
+    
+    
+    
     
 
     <!-- jQuery -->
